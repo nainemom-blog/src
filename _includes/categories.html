@@ -1,0 +1,10 @@
+<ul>
+    {% assign categories = "" %}
+    {% for post in site.posts %}
+        {% assign categories = categories | append: ',' | append: post.category %}
+    {% endfor %}
+    {% assign categories = categories | split: ',' | uniq %}
+    {% for category in categories %}
+        <li><a href="{{site.baseurl}}/category/{{category | replace: "‌", "-"}}">{{ category }}</a></li>
+    {% endfor %}
+</ul>

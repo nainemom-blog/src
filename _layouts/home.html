@@ -1,0 +1,11 @@
+---
+layout: base
+---
+{% for post in paginator.posts %}
+	{% include post.html post = post short = true %}
+{% endfor %}
+
+<div class="pagination">
+	{% if paginator.previous_page %}<a href="{{ paginator.previous_page_path }}">صفحه بعد</a>{% endif %}
+	{% if paginator.next_page %}<a href="{{ paginator.next_page_path }}">صفحه قبل</a>{% endif %}
+</div>

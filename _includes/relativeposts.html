@@ -1,0 +1,21 @@
+{% assign posts = "" %}
+{% for tag in include.post.tags %}
+    {% for post in site.posts %}
+        {% if post.tags contains tag %}
+            {% assign posts = posts | append: "|" | append: post.url %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% assign posts = posts | split: "|" | uniq %}
+{% if posts %}
+    <div class="relativeposts">
+        <h3 class="title"> مطالب مشابه </h3>
+        {% for posturl in posts %}
+            {% for post in site.posts %}
+                {% if posturl == post.url %}
+                    {% include minipost.html post = post %}
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}

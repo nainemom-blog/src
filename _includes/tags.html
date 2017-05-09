@@ -1,0 +1,11 @@
+<ul>
+    {% assign tags = "" %}
+    {% for post in site.posts %}
+        {% assign tag = post.tags | join: ',' %}
+        {% assign tags = tags | append: tag | append: ','%}
+    {% endfor %}
+    {% assign tags = tags | split: ',' | uniq %}
+    {% for tag in tags %}
+        <li><a href="{{site.baseurl}}/tag/{{tag | replace: "‌", "-"}}">{{ tag }}</a></li>
+    {% endfor %}
+</ul>

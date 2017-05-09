@@ -1,0 +1,14 @@
+<ul>
+    {% assign posts = "" %}
+    {% for tag in include.post.tags %}
+        {% for post in site.posts %}
+            {% if post.tags contains tag %}
+                {% assign link = "<a href='" | append: post.url | append: "'>" | append: post.title | append: "</a>" %}
+                {% assign thepost = "<li>" | append: link | append: "</li>" %}
+                {% assign posts = posts | append: "," | append: thepost %}
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% assign posts = posts | split: "," | uniq | join: "" %}
+    {{ posts }}
+</ul>

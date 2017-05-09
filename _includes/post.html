@@ -1,0 +1,34 @@
+{% assign post = include.post %}
+{% assign short = include.short %}
+<article class="post">
+    <div class="header">
+        <h2 class="title">
+            <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <h5>
+            <i class="fa fa-pencil"></i> {{ post.author }}
+        </h5>
+        <h5>
+            <i class="fa fa-calendar-o"></i> {{ post.date | jdate: "%A، %d %b %y" }}
+        </h5>
+        <h5> <i class="fa fa-tag"></i> <a href="{{site.baseurl}}/category/{{post.category}}">{{ post.category }}</a> </h6>
+        <h5 class="tags"> <i class="fa fa-tags"></i>
+            {% for tag in post.tags %}
+            <a href="{{site.baseurl}}/tag/{{tag}}">#{{ tag }}</a>
+            {% endfor %}
+        </h5>
+    </div>
+    <div class="body">
+        {% if short %}
+            {{ post.excerpt }}
+        {% else %}
+            {{ post.content }}
+        {% endif %}
+    </div>
+    {% if short %}
+        <a href="{{ site.baseurl }}{{ post.url }}"> ادامه مطلب </a>
+    {% endif %}
+</article>
+{% if short == false %}
+    {% include relativeposts.html post = post %}
+{% endif %}
