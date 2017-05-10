@@ -1,6 +1,11 @@
 ---
 layout: base
 ---
-{% for post in page.posts %}
-	{% include minipost.html post = post %}
-{% endfor %}
+<div class="miniposts">
+	{% if page.type == "tag" %}
+		<p class="title"> مطالب حاوی کلمه کلیدی <b>{{page.title}}</b>: </p>
+	{% endif %}
+	{% for post in page.posts %}
+		{% include minipost.html post = post %}
+	{% endfor %}
+</div>
