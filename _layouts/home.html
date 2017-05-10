@@ -6,6 +6,7 @@ layout: base
 {% endfor %}
 
 <div class="pagination">
-	{% if paginator.previous_page %}<a href="{{ paginator.previous_page_path }}">صفحه بعد</a>{% endif %}
-	{% if paginator.next_page %}<a href="{{ paginator.next_page_path }}">صفحه قبل</a>{% endif %}
+	{% if paginator.previous_page %}<a href="{{ paginator.previous_page_path }}"><i class="fa fa-long-arrow-right"></i> مطالب جدیدتر </a>{% endif %}
+	{% if paginator.previous_page %} {%if paginator.next_page %} <span class="sep"></span> {% endif %}{% endif %}
+	{% if paginator.next_page %}<a href="{{ paginator.next_page_path }}">مطالب قدیمی‌تر <i class="fa fa-long-arrow-left"></i> </a>{% endif %}
 </div>
