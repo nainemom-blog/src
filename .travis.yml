@@ -9,13 +9,13 @@ before_install:
   - bundle install
   
 script:
-  - jekyll build -d _site
+  - jekyll build -d buildto
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-  local_dir: _site
+  local_dir: buildto
   target_branch: master
   fqdn: morde.ir
   repo: nainemom-blog/nainemom-blog.github.io
