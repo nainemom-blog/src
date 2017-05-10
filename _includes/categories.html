@@ -1,10 +1,11 @@
+{% assign categories = "" %}
+{% for post in site.posts %}
+    {% assign categories = categories | append: ',' | append: post.category %}
+{% endfor %}
+{% assign categories = categories | split: ',' | uniq %}
 <ul>
-    {% assign categories = "" %}
-    {% for post in site.posts %}
-        {% assign categories = categories | append: ',' | append: post.category %}
-    {% endfor %}
-    {% assign categories = categories | split: ',' | uniq %}
-    {% for category in categories %}
-        <li><a href="{{site.baseurl}}/category/{{category | replace: "‌", "-"}}">{{ category }}</a></li>
-    {% endfor %}
+    <li {% if page.layout == "home" %} class="selected" {% endif %}><a href="{{site.url}}">صفحه اصلی</a></li>
+{% for category in categories %}
+    <li {% if page.type == "category" and page.title == category %} class="selected" {% endif %}><a href="{{site.baseurl}}/category/{{category | replace: "‌", "-"}}">{{ category }}</a></li>
+{% endfor %}
 </ul>
