@@ -3,7 +3,7 @@ $content-bg: #f0f0f0;
 $color: #505050;
 $theme-color: #835B74;
 
-$break-small: 768px;
+$break-small: 960px;
 
 *{
 	margin: 0;
@@ -23,6 +23,32 @@ html, body{
 	direction: rtl;
 	font-size: 11pt;
 	line-height: 1.8;
+	&.dark{
+		background: $color;
+		color: $bg;
+		& > *:not(#header){
+			display: none;
+		}
+		& #header{
+			color: $bg;
+			height: 100vh;
+			& > h1{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			& > p{
+				display: none;
+			}
+			& a svg{
+				color: $bg;
+				fill: $bg;
+				width: 172px;
+				height: 164px;
+			}
+		}
+	}
 }
 
 h1 { font-size: 2em; }
@@ -70,6 +96,7 @@ button[disabled], .likebutton[disabled]{
 	padding: 2em 0;
 	color: #4F4F4F;
 	text-align: center;
+	user-select: none;
 }
 	#header > h1{
 		margin: 0 0 .3em 0;
@@ -88,7 +115,7 @@ button[disabled], .likebutton[disabled]{
 		height: 82px;
 		display: inline-block;
 		vertical-align: middle;
-		margin-left: -10px;
+		transition: all .3s;
 	}
 	#header > h5{
 		font-weight: normal;
@@ -104,6 +131,7 @@ button[disabled], .likebutton[disabled]{
 	border-left: none;
 	border-right: none;
 	text-align: center;
+	user-select: none;
 }
 	#menu > ul{
 		list-style: none;
@@ -118,6 +146,8 @@ button[disabled], .likebutton[disabled]{
 	}
 	#menu > ul > li.selected{
 		color: $theme-color;
+		font-weight: bold;
+		text-decoration: underline;
 	}
 	#menu > ul > li:hover{
 		color: $theme-color;
@@ -128,12 +158,13 @@ button[disabled], .likebutton[disabled]{
 	
 #content{
 	margin: 0 auto;
-	max-width: 960px;
+	padding-top: 2em;
+	max-width: $break-small;
 }
 #content .post,
 #content .pagination,
 #content .minipost{
-	margin: 1em auto;
+	margin: 0 auto 2em auto;
 	padding: 1em;
 }
 
@@ -144,33 +175,30 @@ button[disabled], .likebutton[disabled]{
 	border: solid 1px #D3D3D3;
 }
 
-#content .minipost{
-	height: 6em;
-    float: right;
-    width: 46%;
-	margin-left: 2%;
-	margin-right: 2%;
-	@media screen and (max-width: $break-small) {
-		width: 100%;
-		margin-left: 0 !important;
-		margin-right: 0 !important;
-	}
-	& > .title,
-	& > .body{
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		user-select: none;
-	}
-	& > .body{
-		height: 1.5em;
-		line-height: 1.5em;
-		cursor: default;
-	}
-}
 
-#content > .relativeposts > .title{
-	margin: .4em;
+#content > .miniposts{
+	&  > .title{
+		margin: 0 .4em 1.4em .4em;
+	}
+	& > .minipost{
+		height: 8em;
+		line-height: 2em;
+		float: right;
+		width: 100%;
+		& > .header > .title,
+		& > .header,
+		& > .body{
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			user-select: none;
+		}
+		& > .body{
+			height: 1.5em;
+			line-height: 1.5em;
+			cursor: default;
+		}
+	}
 }
 
 #content > .pagination{
@@ -178,12 +206,9 @@ button[disabled], .likebutton[disabled]{
 	font-weight: bold;
 	font-size: .9em;
 }
-#content > .pagination a.olderpage{
-	color: #AD4721;
-}
-#content > .pagination a .icon{
-	font-size: .7em;
-	vertical-align: baseline;
+#content > .pagination a .fa{
+	margin: 0 .2em;
+	vertical-align: middle;
 }
 #content > .pagination .sep{
 	margin: 0 15px;
@@ -191,7 +216,7 @@ button[disabled], .likebutton[disabled]{
 
 #content > .post > .header{
 	$var-bg: rgba( $content-bg, 0.9 );
-	padding: 1em 1em 0 1em;
+	padding: 1em;
 	height: auto;
 	display: block;
 	width: 100%;
@@ -199,7 +224,7 @@ button[disabled], .likebutton[disabled]{
 	background: $var-bg;
 	position: sticky;
 	top: 0;
-	box-shadow: 0 25px 25px $var-bg;
+	box-shadow: 0 15px 15px $var-bg;
 }
 
 #content > .post > .header > .title{
@@ -207,7 +232,8 @@ button[disabled], .likebutton[disabled]{
 	margin-bottom: .4em;
 	line-height: 1.4em;
 }
-#content > .post > .header > h5{
+#content .post > .header > h5,
+#content .minipost > .header > h5{
 	color: #676767;
 	font-weight: normal;
 	margin-left: 1.6em;
@@ -406,16 +432,7 @@ button[disabled], .likebutton[disabled]{
 }
 
 
-@media screen and (max-width: 1024px) {
-	#content .post > .comments > .new-comment,
-	#content .post > .comments > .list{
-		width: 100%;
-		float: none;
-		padding: 15px;
-	}
-	#content .post > .comments > .new-comment{
-		padding-bottom: 4em;
-	}
+@media screen and (max-width: $break-small) {
 	#content > .post{
 		border-left: none;
 		border-right: none;
