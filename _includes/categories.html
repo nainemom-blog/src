@@ -6,6 +6,8 @@
 <ul>
     <li {% if page.layout == "home" %} class="selected" {% endif %}><a href="{{site.url}}">صفحه اصلی</a></li>
 {% for category in categories %}
-    <li {% if page.type == "category" and page.title == category %} class="selected" {% endif %}><a href="{{site.url}}/category/{{category | replace: "‌", "-"}}">{{ category }}</a></li>
+    {% unless category == empty %}
+        <li {% if page.type == "category" and page.title == category %} class="selected" {% endif %}><a href="{{site.url}}/category/{{category | replace: "‌", "-"}}">{{ category }}</a></li>
+    {% endunless %}
 {% endfor %}
 </ul>
