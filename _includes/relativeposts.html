@@ -6,7 +6,7 @@
         {% endif %}
     {% endfor %}
 {% endfor %}
-{% assign posts = posts | split: "|" | uniq %}
+{% assign posts = posts | split: include.post.url | join: "" | split: "|" | uniq %}
 {% unless posts == empty %}
     <div class="miniposts">
         <h3 class="title"> مطالب مشابه </h3>
