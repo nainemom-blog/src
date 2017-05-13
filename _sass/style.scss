@@ -232,6 +232,9 @@ button[disabled], .likebutton[disabled]{
 	margin-bottom: .4em;
 	line-height: 1.4em;
 }
+#content > .post > *:not(.body){
+	user-select: none;
+}
 #content .post > .header > h5,
 #content .minipost > .header > h5{
 	color: #676767;
