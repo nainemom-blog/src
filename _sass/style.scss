@@ -242,9 +242,7 @@ button[disabled], .likebutton[disabled]{
 #content > .post > .header > .tags a{
 	margin-left: .5em;
 }
-#content > .post > .header > .tags a:not(:last-child):after{
-	content: '،';
-}
+
 #content > .post > .body, #content .post > .suggests{
 	line-height: 25pt;
 	padding: .3em 1em;
