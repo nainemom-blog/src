@@ -6,6 +6,6 @@
     {% endfor %}
     {% assign tags = tags | split: ',' | uniq %}
     {% for tag in tags %}
-        <li><a href="{{site.baseurl}}/tag/{{tag | replace: "‌", "-"}}">{{ tag }}</a></li>
+        <li><a href="{{site.url}}/tag/{{tag | replace: "‌", "-"}}">{{ tag }}</a></li>
     {% endfor %}
 </ul>
