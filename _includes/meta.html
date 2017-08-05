@@ -4,12 +4,14 @@
 {% if page.excerpt %}
 <meta property="og:type" content="article">
 <meta property="og:title" content="{{page.title}}">
-<meta property="og:description" content="{{page.excerpt | strip_html}}">
 <meta property="og:url" content="{{site.url}}{{page.url}}">
+<meta property="og:description" content="{{page.excerpt | strip_html}}">
+<meta name="description" content="{{page.excerpt | strip_html}}">
 {% else %}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{site.name}}">
 <meta property="og:description" content="{{site.description}}">
+<meta name="description" content="{{page.excerpt | strip_html}}">
 <meta property="og:url" content="{{site.url}}">
 {% endif %}
 <meta property="og:site_name" content="{{site.name}}">
