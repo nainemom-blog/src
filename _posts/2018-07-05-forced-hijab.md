@@ -1,6 +1,6 @@
 ---
 layout: post
-category: داستان
+category: روزمره
 author: امیر مومنیان
 title: حجاب اجباری
 tags:
